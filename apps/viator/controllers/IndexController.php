@@ -16,6 +16,12 @@ class IndexController extends \Phalcon\Mvc\Controller
 		echo('nonsense, try again');
 		die();
 	}
+	
+	 public function bobAction()
+    {
+		echo('ActionBob - outsorced and injected router');
+		die();
+    }
 
 }
 
