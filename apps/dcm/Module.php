@@ -20,7 +20,6 @@ class Module implements ModuleDefinitionInterface
         $loader->registerNamespaces(
             [
                 'ConnectiveTissue\DCM\Controllers' => __DIR__.'/controllers/',
-				'ConnectiveTissue\DCM\Routing' => __DIR__.'/routing/',
             ]
         );
 

@@ -20,7 +20,6 @@ class Module implements ModuleDefinitionInterface
         $loader->registerNamespaces(
             [
                 'ConnectiveTissue\Viator\Controllers' => __DIR__.'/controllers/',
-				'ConnectiveTissue\Viator\Routing' => __DIR__.'/routing/',
             ]
         );
 

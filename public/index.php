@@ -3,17 +3,22 @@
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
-//require_once '/apps/viator/routing/ViatorRoutingGroup.php';
+
 $di = new FactoryDefault();
- $router = new Router(false);
- $router->mount(new ConnectiveTissue\Viator\Controllers\ViatorRouterGroup());
+
 // Specify routes for modules
 $di->set(
     'router',
-    $router
-		);
-//		$router->mount(new ConnectiveTissue\RouterGroups\ViatorRouterGroup());
-
+    function () {
+		//means we dont need a default i think
+        $router = new Router(false);
+		//wildcard match for the module
+		$router->add('/:module/', array(
+			'module' => 1,
+			'controller' => 'index',
+			'controller' => 'index',
+			
+		));
 		
 //        $router->setDefaultModule('viator');
 //		//don tknow why this doesnt work
@@ -25,10 +30,10 @@ $di->set(
 //            ]
 //        );
 //		
-//
-//		
+	
+		
 //		  $router->add(
-//            '/viator/:action',
+//            '/viator/',
 //            [
 //				'module'     => 'viator',
 //                'controller' => 'index',
@@ -62,9 +67,9 @@ $di->set(
 //            ]
 //        );
 
-//        return $router;
-//    }
-//);
+        return $router;
+    }
+);
 
 // Create an application
 $application = new Application($di);
