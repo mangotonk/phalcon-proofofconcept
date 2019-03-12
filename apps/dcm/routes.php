@@ -5,13 +5,13 @@ use Phalcon\Mvc\Router\Group as RouterGroup;
 // Create a group with a common module and controller
 $blog = new RouterGroup(
     [
-        'module'     => 'viator',
+        'module'     => 'dcm',
         'controller' => 'index',
     ]
 );
 
 // All the routes start with /blog
-$blog->setPrefix('/viator');
+$blog->setPrefix('/dcm');
 
 // Add a route to the group
 //$blog->add(
@@ -34,7 +34,7 @@ $blog->add(
     '/glob',
     [
         'controller' => 'index',
-        'action'     => 'steve',
+        'action'     => 'goerge',
     ]
 );
 

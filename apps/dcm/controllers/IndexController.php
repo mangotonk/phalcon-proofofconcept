@@ -10,6 +10,12 @@ class IndexController extends \Phalcon\Mvc\Controller
 		echo('DCM');
 		die();
     }
+	
+	 public function goergeAction()
+    {
+		echo('george');
+		die();
+    }
 
 }
 

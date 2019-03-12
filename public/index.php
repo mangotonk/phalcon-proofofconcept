@@ -6,15 +6,6 @@ use Phalcon\Di\FactoryDefault;
 
 $di = new FactoryDefault();
 
-// Specify routes for modules
-$di->set(
-    'router',
-    function () {
-		require '../config/routes.php';
-        return $router;
-    }
-);
-
 // Create an application
 $application = new Application($di);
 
@@ -24,13 +15,23 @@ $application->registerModules(
         'dcm' => [
             'className' => 'ConnectiveTissue\DCM\Module',
             'path'      => '../apps/dcm/Module.php',
+			'routes'  => '../apps/dcm/routes.php',
         ],
         'viator'  => [
             'className' => 'ConnectiveTissue\Viator\Module',
             'path'      => '../apps/viator/Module.php',
+			'routes'  => '../apps/viator/routes.php',
         ]
     ]
 );
+
+$router = new Router();
+
+foreach($application->getModules() as $app){
+	$router->mount(require_once $app['routes']);
+}
+
+$di->set('router',$router);
 
 try {
     // Handle the request
