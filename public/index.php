@@ -1,47 +1,93 @@
 <?php
+
+use Phalcon\Mvc\Router;
+use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
+//require_once '/apps/viator/routing/ViatorRoutingGroup.php';
+$di = new FactoryDefault();
+ $router = new Router(false);
+ $router->mount(new ConnectiveTissue\Viator\Controllers\ViatorRouterGroup());
+// Specify routes for modules
+$di->set(
+    'router',
+    $router
+		);
+//		$router->mount(new ConnectiveTissue\RouterGroups\ViatorRouterGroup());
 
-error_reporting(E_ALL);
+		
+//        $router->setDefaultModule('viator');
+//		//don tknow why this doesnt work
+//        $router->add(
+//            '/:module/login/',
+//            [
+//                'controller' => 'index',
+//                'action'     => 'index',
+//            ]
+//        );
+//		
+//
+//		
+//		  $router->add(
+//            '/viator/:action',
+//            [
+//				'module'     => 'viator',
+//                'controller' => 'index',
+//                'action'     => 'index',
+//            ]
+//			);
+//		  
+//		   $router->add(
+//            '/dcm/',
+//            [
+//				'module'     => 'dcm',
+//                'controller' => 'index',
+//                'action'     => 'index',
+//            ]
+//			);
+//
+//        $router->add(
+//            '/admin/products/:action',
+//            [
+//                'module'     => 'backend',
+//                'controller' => 'products',
+//                'action'     => 1,
+//            ]
+//        );
+//
+//        $router->add(
+//            '/products/:action',
+//            [
+//                'controller' => 'products',
+//                'action'     => 1,
+//            ]
+//        );
 
-define('BASE_PATH', dirname(__DIR__));
-define('APP_PATH', BASE_PATH . '/app');
+//        return $router;
+//    }
+//);
+
+// Create an application
+$application = new Application($di);
+
+// Register the installed modules
+$application->registerModules(
+    [
+        'dcm' => [
+            'className' => 'ConnectiveTissue\DCM\Module',
+            'path'      => '../apps/dcm/Module.php',
+        ],
+        'viator'  => [
+            'className' => 'ConnectiveTissue\Viator\Module',
+            'path'      => '../apps/viator/Module.php',
+        ]
+    ]
+);
 
 try {
+    // Handle the request
+    $response = $application->handle();
 
-    /**
-     * The FactoryDefault Dependency Injector automatically registers
-     * the services that provide a full stack framework.
-     */
-    $di = new FactoryDefault();
-
-    /**
-     * Handle routes
-     */
-    include APP_PATH . '/config/router.php';
-
-    /**
-     * Read services
-     */
-    include APP_PATH . '/config/services.php';
-
-    /**
-     * Get config service for use in inline setup below
-     */
-    $config = $di->getConfig();
-
-    /**
-     * Include Autoloader
-     */
-    include APP_PATH . '/config/loader.php';
-
-    /**
-     * Handle the request
-     */
-    $application = new \Phalcon\Mvc\Application($di);
-
-    echo $application->handle()->getContent();
-
+    $response->send();
 } catch (\Exception $e) {
-    echo $e->getMessage() . '<br>';
-    echo '<pre>' . $e->getTraceAsString() . '</pre>';
+    echo $e->getMessage();
 }
