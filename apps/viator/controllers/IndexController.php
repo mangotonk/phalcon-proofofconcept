@@ -10,6 +10,12 @@ class IndexController extends \Phalcon\Mvc\Controller
 		echo('VIATOR');
 		die();
     }
+	
+	public function route404Action() 
+	{
+		echo('nonsense, try again');
+		die();
+	}
 
 }
 

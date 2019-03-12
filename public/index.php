@@ -19,6 +19,26 @@ $di->set(
 			'controller' => 'index',
 			
 		));
+				
+		//this might work but will need to be taken out the closure i think and the application passed.
+		////this fragment prevents not present moudles from throwing errors		
+//		->beforeMatch(function($uri) use ($application) {
+//
+//			$modules = $application->getModules();
+//
+//			$moduleName = array_filter(explode('/', $uri))[1];
+//
+//			if(!isset($modules[$moduleName]))
+//				return false;
+//
+//			return true;
+//		});
+		
+		$router->notFound(array(
+			'module' => 'viator',
+			"controller" => "index",
+			"action" => "route404"
+		));
 		
 //        $router->setDefaultModule('viator');
 //		//don tknow why this doesnt work
