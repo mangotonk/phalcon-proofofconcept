@@ -8,13 +8,13 @@ class IndexController extends \Phalcon\Mvc\Controller
     public function indexAction()
     {
 		echo('DCM');
-		die();
+//		die();
     }
 	
 	 public function goergeAction()
     {
 		echo('george');
-		die();
+//		die();
     }
 
 }

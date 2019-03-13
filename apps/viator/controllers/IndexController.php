@@ -8,25 +8,25 @@ class IndexController extends \Phalcon\Mvc\Controller
     public function indexAction()
     {
 		echo('VIATOR');
-		die();
+//		die();
     }
 	
 	public function route404Action() 
 	{
 		echo('nonsense, try again');
-		die();
+//		die();
 	}
 	
 	 public function bobAction()
     {
 		echo('ActionBob - outsorced and injected router');
-		die();
+//		die();
     }
 	
 	 public function steveAction()
     {
 		echo('steveAction - via RouterGroup');
-		die();
+//		die();
     }
 
 }
