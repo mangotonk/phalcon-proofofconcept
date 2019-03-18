@@ -4,6 +4,9 @@ use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 
+//php way, seems to be satandard, despite the Loader func, because Composer generates its own autoload
+require '../vendor/autoload.php';
+
 $di = new FactoryDefault();
 
 // Create an application

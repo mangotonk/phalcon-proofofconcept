@@ -1,4 +1,7 @@
 {
+     "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
     "require-dev": {
         "phalcon/devtools": "~3.0.3"
     }

@@ -31,10 +31,10 @@ $blog->add(
 
 // This route maps to a controller different than the default
 $blog->add(
-    '/glob',
+    '/availsample1',
     [
         'controller' => 'index',
-        'action'     => 'goerge',
+        'action'     => 'avail1',
     ]
 );
 

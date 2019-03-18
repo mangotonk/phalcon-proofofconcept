@@ -6,9 +6,12 @@
  * and open the template in the editor.
  */
 
-use Phalcon\Mvc\Controller;
 
-class ControllerBase extends Controller
+
+namespace ConnectiveTissue\DCM\Controllers;
+
+
+class ControllerBase extends \Phalcon\Mvc\Controller
 {
 
 }
